@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>For Ivy</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;1,300;1,500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#101a2e;--bg2:#1d2a4a;--ink:#f3ecdf;--soft:#c3c9dc;--glow:#f2c879;--serif:"Fraunces",Georgia,"Times New Roman",serif;--sans:"Jost",system-ui,-apple-system,"Segoe UI",sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,var(--bg2),var(--bg) 60%) fixed;color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.75;overflow-x:hidden}
+h1,h2,p{margin:0}
+:focus-visible{outline:2px solid var(--glow);outline-offset:3px}
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+.star{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.5;animation:tw 4s ease-in-out infinite}
+@keyframes tw{50%{opacity:.08}}
+main{position:relative;z-index:1}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,13vw,8rem);line-height:1.02;font-style:italic}
+.hero .for{margin-top:20px;font-family:var(--serif);font-size:clamp(1.2rem,4vw,1.7rem);color:var(--glow)}
+.hero .cue{margin-top:48px;color:var(--soft);font-size:.9rem;text-decoration:none;border-bottom:1px solid rgba(195,201,220,.4);padding-bottom:2px}
+.block{max-width:640px;margin:0 auto;padding:72px 24px}
+.block p{font-family:var(--serif);font-weight:300;font-size:clamp(1.2rem,3.4vw,1.5rem);line-height:1.8;margin-bottom:1.3em}
+.line{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,5vw,2.2rem);line-height:1.4;max-width:560px;margin:0 auto;padding:48px 24px;text-align:center;color:var(--glow)}
+.counter{text-align:center;padding:56px 24px}
+.counter button{background:transparent;border:1px solid var(--glow);color:var(--glow);padding:16px 30px;font:inherit;font-size:1rem;letter-spacing:.03em;border-radius:2px;cursor:pointer;transition:background .2s,color .2s}
+.counter button:hover{background:var(--glow);color:#241b0a}
+#reply{min-height:3.5em;margin:24px auto 0;max-width:460px;font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--ink)}
+.end{text-align:center;padding:80px 24px 140px}
+.end h2{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(2rem,7vw,3.6rem)}
+.end p{margin-top:16px;color:var(--soft)}
+.end .sig{margin-top:30px;color:var(--glow);font-family:var(--serif);font-size:1.4rem}
+@media (prefers-reduced-motion:reduce){.star{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="stars" id="stars" aria-hidden="true"></div>
+<main>
+  <section class="hero">
+    <h1>I miss you</h1>
+    <div class="for">Ivy Adwoa Nambia</div>
+    <a class="cue" href="#words">Read this when you have a quiet minute</a>
+  </section>
+
+  <section class="block" id="words">
+    <p>Ivy, I wanted you to have something that says it properly: I miss you.</p>
+    <p>I miss your voice, your laugh, and the way you make a whole room feel lighter. I miss the small, ordinary moments with you, because they were never ordinary.</p>
+    <p>Even when we are apart, you are the first person I think of when something good happens and the one I want beside me when things are hard.</p>
+  </section>
+
+  <div class="line">Distance is only a place. You are my home.</div>
+
+  <section class="block">
+    <p>Thank you for being patient, kind and loving. You make me want to be better, and you make waiting for the next time I see you worth it.</p>
+    <p>Wherever you are tonight, know that someone is thinking about you, smiling about you and counting down until he sees you again.</p>
+  </section>
+
+  <section class="counter">
+    <button id="btn">Tap if you miss me too</button>
+    <p id="reply" aria-live="polite"></p>
+  </section>
+
+  <section class="end">
+    <h2>See you soon, my love.</h2>
+    <p>Until then, hold on to this: you are loved, and you are missed.</p>
+    <p class="sig">Yours, Daniel</p>
+  </section>
+</main>
+
+<script>
+const stars = document.getElementById("stars");
+for(let i=0;i<60;i++){
+  const s = document.createElement("span");
+  s.className = "star";
+  s.style.left = Math.random()*100+"%";
+  s.style.top = Math.random()*100+"%";
+  s.style.animationDelay = (Math.random()*4)+"s";
+  stars.appendChild(s);
+}
+const replies = [
+  "I knew it. I miss you more.",
+  "Then we are even, and I still miss you more.",
+  "Good. Keep that thought, I’m coming for a hug.",
+  "Close your eyes. I’m right there with you.",
+  "Every time you tap, I smile a little wider."
+];
+let n = 0;
+document.getElementById("btn").addEventListener("click", ()=>{
+  document.getElementById("reply").textContent = replies[n % replies.length];
+  n++;
+});
+</script>
+</body>
+</html>
